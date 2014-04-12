@@ -26,6 +26,11 @@
     </repository>
   </repositories>
 
+  <scm>
+    <connection>scm:git:https://github.com/jenkinsci/email-ext-template-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:jenkinsci/email-ext-template-plugin.git</developerConnection>
+  </scm>
+
   <pluginRepositories>
     <pluginRepository>
       <id>repo.jenkins-ci.org</id>
