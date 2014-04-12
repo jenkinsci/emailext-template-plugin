@@ -11,14 +11,13 @@ d = namespace("jelly:define")
 //def templates = hudson.plugins.emailext.plugins.EmailTrigger.all()
 def configured = instance != null
 
-
 f.entry(title: _("Templates"), description: _("The templates to use for sending emails")) {
-    f.repeatable(var: "template", field="templates", noAddButton: true, minimum:1) {
+    f.repeatable(var: "template", noAddButton: true, minimum:1, name:"templateIds") {
         table(width: "100%") {
             f.entry {
                 select(name:"templateId") {
                     descriptor.templates.each { aTemplate ->
-                        if(template != null && template.id==aTemplate.id) {
+                        if(template != null && template.templateId==aTemplate.id) {
                             option(value: aTemplate.id, selected: "selected", "${aTemplate.name} - ${aTemplate.description}")
                         } else {
                             option(value: aTemplate.id, "${aTemplate.name} - ${aTemplate.description}")

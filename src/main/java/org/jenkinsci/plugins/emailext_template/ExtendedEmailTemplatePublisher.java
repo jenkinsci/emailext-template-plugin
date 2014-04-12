@@ -17,10 +17,8 @@ import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Notifier;
 import hudson.tasks.Publisher;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+
 import jenkins.model.Jenkins;
 import org.kohsuke.stapler.DataBoundConstructor;
 
@@ -30,15 +28,15 @@ import org.kohsuke.stapler.DataBoundConstructor;
  */
 public class ExtendedEmailTemplatePublisher extends Notifier /*implements MatrixAggregatable*/ {
     
-    private List<String> templates;
+    private List<TemplateId> templateIds;
     
     @DataBoundConstructor
-    public ExtendedEmailTemplatePublisher(List<String> templates) {
-        this.templates = templates;
+    public ExtendedEmailTemplatePublisher(List<TemplateId> templateIds) {
+        this.templateIds = templateIds;
     }
     
-    public Collection<String> getTemplateIds() {
-        return Collections.unmodifiableCollection(templates);
+    public Collection<TemplateId> getTemplateIds() {
+        return Collections.unmodifiableCollection(templateIds);
     }
 
     public BuildStepMonitor getRequiredMonitorService() {
@@ -48,8 +46,8 @@ public class ExtendedEmailTemplatePublisher extends Notifier /*implements Matrix
     @Override
     public boolean prebuild(AbstractBuild<?, ?> build, BuildListener listener) {
         boolean result = true;
-        for(String template : templates) {
-            ExtendedEmailPublisherTemplate t = getDescriptor().getTemplateById(template);
+        for(TemplateId template : templateIds) {
+            ExtendedEmailPublisherTemplate t = getDescriptor().getTemplateById(template.getTemplateId());
             result &= t.getPublisher().prebuild(build, listener);
         }
         
@@ -59,8 +57,8 @@ public class ExtendedEmailTemplatePublisher extends Notifier /*implements Matrix
     @Override
     public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener) throws InterruptedException, IOException {
         boolean result = true;
-        for(String template : templates) {
-            ExtendedEmailPublisherTemplate t = getDescriptor().getTemplateById(template);
+        for(TemplateId template : templateIds) {
+            ExtendedEmailPublisherTemplate t = getDescriptor().getTemplateById(template.getTemplateId());
             if(t != null) {
                 result &= t.getPublisher().perform(build, launcher, listener);
             }

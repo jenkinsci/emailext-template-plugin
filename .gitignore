@@ -1,3 +1,5 @@
 target/
 work/
 nb-configuration.xml
+/.idea
+/emailext-template.iml
