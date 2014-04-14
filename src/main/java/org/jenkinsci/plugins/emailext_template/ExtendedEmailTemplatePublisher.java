@@ -48,7 +48,11 @@ public class ExtendedEmailTemplatePublisher extends Notifier /*implements Matrix
         boolean result = true;
         for(TemplateId template : templateIds) {
             ExtendedEmailPublisherTemplate t = getDescriptor().getTemplateById(template.getTemplateId());
-            result &= t.getPublisher().prebuild(build, listener);
+            if(t != null) {
+                result &= t.getPublisher().prebuild(build, listener);
+            } else {
+                listener.getLogger().println("Template with ID " + template.getTemplateId() + " has been removed, please double check your settings");
+            }
         }
         
         return result;        
@@ -61,6 +65,8 @@ public class ExtendedEmailTemplatePublisher extends Notifier /*implements Matrix
             ExtendedEmailPublisherTemplate t = getDescriptor().getTemplateById(template.getTemplateId());
             if(t != null) {
                 result &= t.getPublisher().perform(build, launcher, listener);
+            } else {
+                listener.getLogger().println("Template with ID " + template.getTemplateId() + " has been removed, please double check your settings");
             }
         }
         return result;
