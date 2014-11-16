@@ -112,6 +112,7 @@ public class ExtEmailTemplateManagement extends ManagementLink {
             if(template != null) {
                 req.bindJSON(template, json);
                 template.setPublisher(req.bindJSON(ExtendedEmailPublisher.class, json));
+                descriptor.save();
             } else {
                 template = req.bindJSON(ExtendedEmailPublisherTemplate.class, json);
                 template.setPublisher(req.bindJSON(ExtendedEmailPublisher.class, json));
@@ -120,6 +121,7 @@ public class ExtEmailTemplateManagement extends ManagementLink {
         } catch (ServletException e) {
             e.printStackTrace();
         }
+        
         return new HttpRedirect("index");
     }
     

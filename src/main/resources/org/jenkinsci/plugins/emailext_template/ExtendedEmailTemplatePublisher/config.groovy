@@ -8,7 +8,6 @@ f = namespace("/lib/form")
 d = namespace("jelly:define")
 
 
-//def templates = hudson.plugins.emailext.plugins.EmailTrigger.all()
 def configured = instance != null
 
 f.entry(title: _("Templates"), description: _("The templates to use for sending emails")) {

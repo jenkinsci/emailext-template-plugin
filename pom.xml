@@ -27,8 +27,8 @@
   </repositories>
 
   <scm>
-    <connection>scm:git:https://github.com/jenkinsci/email-ext-template-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:jenkinsci/email-ext-template-plugin.git</developerConnection>
+    <connection>scm:git:https://github.com/jenkinsci/emailext-template-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:jenkinsci/emailext-template-plugin.git</developerConnection>
   </scm>
 
   <pluginRepositories>

@@ -56,5 +56,4 @@ public class ExtendedEmailTemplatePublisherTest {
         assertTrue("Template was removed, so we should get the message",
                 b.getLog(100).contains(Messages.ExtendedEmailTemplatePublisher_TemplateRemoved(template.getId())));
     }
-
 }
