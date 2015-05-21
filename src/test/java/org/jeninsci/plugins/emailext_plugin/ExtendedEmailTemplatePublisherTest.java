@@ -13,7 +13,6 @@ import org.jenkinsci.plugins.emailext_template.Messages;
 import org.jenkinsci.plugins.emailext_template.TemplateId;
 import org.junit.Rule;
 import org.junit.Test;
-import org.jvnet.hudson.test.Bug;
 import org.jvnet.hudson.test.JenkinsRule;
 
 import java.util.ArrayList;
@@ -21,6 +20,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
+import org.jvnet.hudson.test.Issue;
 
 /**
  * Created by acearl on 4/16/2014.
@@ -31,7 +31,7 @@ public class ExtendedEmailTemplatePublisherTest {
     public JenkinsRule j = new JenkinsRule();
 
     @Test
-    @Bug(22610)
+    @Issue("JENKINS-22610")
     public void testRemovedTemplate() throws Exception {
         ExtendedEmailTemplatePublisher.DescriptorImpl descriptor = (ExtendedEmailTemplatePublisher.DescriptorImpl)j.jenkins.getDescriptor(ExtendedEmailTemplatePublisher.class);
         List<EmailTrigger> triggers = new ArrayList<EmailTrigger>();

@@ -8,7 +8,7 @@ package org.jenkinsci.plugins.emailext_template;
 
 import hudson.plugins.emailext.ExtendedEmailPublisher;
 import java.io.Serializable;
-import org.codehaus.plexus.util.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 /**
