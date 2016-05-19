@@ -18,7 +18,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by mgaunin on 19/05/16.
@@ -43,31 +43,31 @@ public class ExtEmailTemplateSlicerTest {
         final AbstractProject project = createProject("Job", null);
         // Let's check that there is no template yet
         List<String> values = spec.getValues(project);
-        assertThat(values.get(0)).isEqualTo(spec.getDefaultValueString());
+        assertTrue(values.get(0).equalsIgnoreCase(spec.getDefaultValueString()));
         // Set one template
         spec.setValues(project, Collections.singletonList(NAME_TEMP1));
         values = spec.getValues(project);
-        assertThat(values.get(0)).isEqualTo(NAME_TEMP1);
+        assertTrue(values.get(0).equalsIgnoreCase(NAME_TEMP1));
         ExtendedEmailTemplatePublisher publisher = (ExtendedEmailTemplatePublisher)project.getPublishersList().get(0);
         Collection<TemplateId> ids = publisher.getTemplateIds();
         for (final TemplateId id : ids) {
-            assertThat(ID_TEMP1.equalsIgnoreCase(id.getTemplateId()));
+            assertTrue(ID_TEMP1.equalsIgnoreCase(id.getTemplateId()));
         }
         final StringBuffer sb = new StringBuffer();
         sb.append(NAME_TEMP1).append(DELIM).append(NAME_TEMP2);
         // Set a second template
         spec.setValues(project, Collections.singletonList(sb.toString()));
         values = spec.getValues(project);
-        assertThat(values.get(0)).isEqualTo(sb.toString());
+        assertTrue(values.get(0).equalsIgnoreCase(sb.toString()));
         ids = publisher.getTemplateIds();
         boolean firstId = true;
         for (final TemplateId id : ids) {
             if (firstId) {
-                assertThat(ID_TEMP1.equalsIgnoreCase(id.getTemplateId()));
+                assertTrue(ID_TEMP1.equalsIgnoreCase(id.getTemplateId()));
                 firstId = false;
             }
             else
-                assertThat(ID_TEMP2.equalsIgnoreCase(id.getTemplateId()));
+                assertTrue(ID_TEMP2.equalsIgnoreCase(id.getTemplateId()));
         }
     }
 
@@ -79,7 +79,7 @@ public class ExtEmailTemplateSlicerTest {
         // Set 3 templates
         spec.setValues(project, Collections.singletonList(sb.toString()));
         List<String> values = spec.getValues(project);
-        assertThat(values.get(0)).isEqualTo(sb.toString());
+        assertTrue(values.get(0).equalsIgnoreCase(sb.toString()));
         sb = new StringBuffer();
         sb.append(NAME_TEMP1).append(DELIM).append(DELIM).append(NAME_TEMP3);
         // Remove the second one with typo in the value (2 delimiters)
@@ -87,23 +87,23 @@ public class ExtEmailTemplateSlicerTest {
         values = spec.getValues(project);
         sb = new StringBuffer();
         sb.append(NAME_TEMP1).append(DELIM).append(NAME_TEMP3);
-        assertThat(values.get(0)).isEqualTo(sb.toString());
+        assertTrue(values.get(0).equalsIgnoreCase(sb.toString()));
         ExtendedEmailTemplatePublisher publisher = (ExtendedEmailTemplatePublisher)project.getPublishersList().get(0);
         Collection<TemplateId> ids = publisher.getTemplateIds();
         boolean firstId = true;
         for (final TemplateId id : ids) {
             if (firstId) {
-                assertThat(id.getTemplateId()).isEqualTo(ID_TEMP1);
+                assertTrue(id.getTemplateId().equalsIgnoreCase(ID_TEMP1));
                 firstId = false;
             }
             else
-                assertThat(id.getTemplateId()).isEqualTo(ID_TEMP3);
+                assertTrue(id.getTemplateId().equalsIgnoreCase(ID_TEMP3));
         }
         // Remove all templates
         spec.setValues(project, Collections.singletonList(spec.getDefaultValueString()));
         values = spec.getValues(project);
-        assertThat(values.get(0)).isEqualTo(spec.getDefaultValueString());
-        assertThat(project.getPublishersList()).isEmpty();
+        assertTrue(values.get(0).equalsIgnoreCase(spec.getDefaultValueString()));
+        assertTrue(project.getPublishersList().isEmpty());
     }
 
     @Before
