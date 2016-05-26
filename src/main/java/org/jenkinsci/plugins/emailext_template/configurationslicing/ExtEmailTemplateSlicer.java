@@ -11,7 +11,12 @@ import org.jenkinsci.plugins.emailext_template.Messages;
 import org.jenkinsci.plugins.emailext_template.TemplateId;
 
 import java.io.IOException;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
 /**
@@ -19,7 +24,9 @@ import java.util.logging.Logger;
  */
 @Extension(optional = true)
 public class ExtEmailTemplateSlicer extends UnorderedStringSlicer<AbstractProject<?, ?>> {
-    public ExtEmailTemplateSlicer() { super(new ExtEmailTemplateSlicerSpec()); }
+    public ExtEmailTemplateSlicer() {
+        super(new ExtEmailTemplateSlicerSpec());
+    }
 
     public static class ExtEmailTemplateSlicerSpec
             extends UnorderedStringSlicer.UnorderedStringSlicerSpec<AbstractProject<?, ?>> {
@@ -140,6 +147,7 @@ public class ExtEmailTemplateSlicer extends UnorderedStringSlicer<AbstractProjec
             }
             return delim;
         }
+
         private void retrieveTemplate(final List<TemplateId> templateIds, final String name,
                                       final ExtendedEmailTemplatePublisher.DescriptorImpl descriptor) {
             final ExtendedEmailPublisherTemplate template = descriptor.getTemplateByName(name);
@@ -149,6 +157,7 @@ public class ExtEmailTemplateSlicer extends UnorderedStringSlicer<AbstractProjec
                 LOGGER.warning(Messages.TemplateNameRemoved(name));
             }
         }
+
         @Override
         public String getDefaultValueString() {
             return "(Disabled)";

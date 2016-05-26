@@ -8,7 +8,6 @@ package org.jenkinsci.plugins.emailext_template;
 
 import hudson.Extension;
 import hudson.Launcher;
-import hudson.matrix.MatrixRun;
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
 import hudson.model.BuildListener;
@@ -16,11 +15,14 @@ import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Notifier;
 import hudson.tasks.Publisher;
-import java.io.IOException;
-import java.util.*;
-
 import jenkins.model.Jenkins;
 import org.kohsuke.stapler.DataBoundConstructor;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 /**
  *
