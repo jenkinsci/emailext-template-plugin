@@ -8,7 +8,6 @@ package org.jenkinsci.plugins.emailext_template;
 
 import hudson.Extension;
 import hudson.Launcher;
-import hudson.matrix.MatrixRun;
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
 import hudson.model.BuildListener;
@@ -16,11 +15,14 @@ import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Notifier;
 import hudson.tasks.Publisher;
-import java.io.IOException;
-import java.util.*;
-
 import jenkins.model.Jenkins;
 import org.kohsuke.stapler.DataBoundConstructor;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 /**
  *
@@ -39,6 +41,10 @@ public class ExtendedEmailTemplatePublisher extends Notifier /*implements Matrix
         return Collections.unmodifiableCollection(templateIds);
     }
 
+    public void setTemplateIds(List<TemplateId> list) {
+        templateIds = list;
+    }
+
     public BuildStepMonitor getRequiredMonitorService() {
         return BuildStepMonitor.NONE;
     }
@@ -51,7 +57,7 @@ public class ExtendedEmailTemplatePublisher extends Notifier /*implements Matrix
             if(t != null) {
                 result &= t.getPublisher().prebuild(build, listener);
             } else {
-                listener.getLogger().println(Messages.ExtendedEmailTemplatePublisher_TemplateRemoved(template.getTemplateId()));
+                listener.getLogger().println(Messages.TemplateIdRemoved(template.getTemplateId()));
             }
         }
         
@@ -66,7 +72,7 @@ public class ExtendedEmailTemplatePublisher extends Notifier /*implements Matrix
             if(t != null) {
                 result &= t.getPublisher().perform(build, launcher, listener);
             } else {
-                listener.getLogger().println(Messages.ExtendedEmailTemplatePublisher_TemplateRemoved(template.getTemplateId()));
+                listener.getLogger().println(Messages.TemplateIdRemoved(template.getTemplateId()));
             }
         }
         return result;
@@ -114,7 +120,7 @@ public class ExtendedEmailTemplatePublisher extends Notifier /*implements Matrix
                 save();
             }            
         }
-        
+
         public ExtendedEmailPublisherTemplate getTemplateById(String id) {
             ExtendedEmailPublisherTemplate template = null;
             for(ExtendedEmailPublisherTemplate t : templates) {
@@ -125,7 +131,18 @@ public class ExtendedEmailTemplatePublisher extends Notifier /*implements Matrix
             }
             return template;
         }
-        
-    }    
+
+        public ExtendedEmailPublisherTemplate getTemplateByName(String name) {
+            ExtendedEmailPublisherTemplate template = null;
+            for(ExtendedEmailPublisherTemplate t : templates) {
+                if(t.getName().equalsIgnoreCase(name)) {
+                    template = t;
+                    break;
+                }
+            }
+            return template;
+        }
+
+    }
     
 }
