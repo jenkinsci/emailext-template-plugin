@@ -8,7 +8,7 @@
 
   <groupId>org.jenkinsci.plugins</groupId>
   <artifactId>emailext-template</artifactId>
-  <version>0.5-SNAPSHOT</version>
+  <version>0.5</version>
   <packaging>hpi</packaging>
   <name>Email Extension Template Plugin</name>
   <url>https://wiki.jenkins-ci.org/display/JENKINS/Email-ext+Template+Plugin</url>
@@ -53,10 +53,33 @@
     </repository>
   </repositories>
 
+  <build>
+    <plugins>
+      <plugin>
+               <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.3</version>
+                <configuration>
+                    <xmlOutput>true</xmlOutput>
+                    <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+                    <failOnError>false</failOnError>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+    </plugins>
+  </build>
+
   <scm>
     <connection>scm:git:https://github.com/jenkinsci/emailext-template-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/emailext-template-plugin.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>emailext-template-0.5</tag>
   </scm>
 
   <pluginRepositories>
