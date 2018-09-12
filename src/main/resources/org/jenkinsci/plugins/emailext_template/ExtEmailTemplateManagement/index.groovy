@@ -46,8 +46,11 @@ l.layout(permission:app.ADMINISTER, norefresh: true) {
             a(href:"editTemplate?id=${t.id}") {
               img(width:"16", height:"16", title:_("Edit template")+" "+t.name, src:"${imagesURL}/16x16/document_edit.gif")
             }
-            a(href:"removeTemplate?id=${t.id}", onclick:"return emailexttemplate_confirmDelete('${t.name}')") {
+            a(href:"removeTemplate?id=${t.id}", onclick:"return emailexttemplate_confirmDelete('${t.name}', '${t.id}')") {
               img(width:"16", height:"16", title:_("Remove template")+" "+t.name, src:"${imagesURL}/16x16/edit-delete.gif")
+            }
+            form(method: "post", action: "removeTemplate", id:"removeForm") {
+              input(type: "hidden", "name": "id", id:"removeId")
             }
           }
           td {
@@ -61,12 +64,12 @@ l.layout(permission:app.ADMINISTER, norefresh: true) {
       }
     }
     
-    script("function emailexttemplate_confirmDelete(name) {\n" +
+    script("function emailexttemplate_confirmDelete(name, id) {\n" +
         "if (confirm(\"Are you sure you want to delete [\"+name+\"]?\")) {\n" +
-        "    return true;\n" +
-        "}else{\n" +
-        "    return false;\n" +
+            "document.getElementById('removeId').value = id;\n" +
+            "document.getElementById('removeForm').submit();\n" +
         "}\n" +
-        "}\n")  
+        "return false;\n" +
+        "}\n")
   }
 }

@@ -13,6 +13,7 @@ import org.kohsuke.stapler.HttpResponse;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
+import org.kohsuke.stapler.interceptor.RequirePOST;
 
 
 @Extension
@@ -93,13 +94,15 @@ public class ExtEmailTemplateManagement extends ManagementLink {
      * @return forward to 'index'
      * @throws IOException
      */
+    @RequirePOST
     public HttpResponse doRemoveTemplate(StaplerRequest res, StaplerResponse rsp, @QueryParameter("id") String templateId) throws IOException {
         checkPermission(Jenkins.ADMINISTER);
         ExtendedEmailTemplatePublisher.DescriptorImpl descriptor = getPublisherDescriptor();
         descriptor.removeTemplateById(templateId);
         return new HttpRedirect("index");
     }
-    
+
+    @RequirePOST
     public HttpResponse doSaveTemplate(StaplerRequest req) {
         checkPermission(Jenkins.ADMINISTER);
         try {
