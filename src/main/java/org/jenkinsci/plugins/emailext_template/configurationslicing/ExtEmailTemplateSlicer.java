@@ -2,16 +2,17 @@ package org.jenkinsci.plugins.emailext_template.configurationslicing;
 
 import configurationslicing.TopLevelItemSelector;
 import configurationslicing.UnorderedStringSlicer;
+
 import hudson.Extension;
 import hudson.model.AbstractProject;
 import hudson.tasks.Publisher;
+
 import org.jenkinsci.plugins.emailext_template.ExtendedEmailPublisherTemplate;
 import org.jenkinsci.plugins.emailext_template.ExtendedEmailTemplatePublisher;
 import org.jenkinsci.plugins.emailext_template.Messages;
 import org.jenkinsci.plugins.emailext_template.TemplateId;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;

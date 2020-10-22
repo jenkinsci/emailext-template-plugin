@@ -1,4 +1,6 @@
-package org.jeninsci.plugins.emailext_template;
+package org.jenkinsci.plugins.emailext_template;
+
+import static org.junit.Assert.assertTrue;
 
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
@@ -7,20 +9,15 @@ import hudson.plugins.emailext.ExtendedEmailPublisher;
 import hudson.plugins.emailext.MatrixTriggerMode;
 import hudson.plugins.emailext.plugins.EmailTrigger;
 import hudson.plugins.emailext.plugins.trigger.AlwaysTrigger;
-import org.jenkinsci.plugins.emailext_template.ExtendedEmailPublisherTemplate;
-import org.jenkinsci.plugins.emailext_template.ExtendedEmailTemplatePublisher;
-import org.jenkinsci.plugins.emailext_template.Messages;
-import org.jenkinsci.plugins.emailext_template.TemplateId;
+
 import org.junit.Rule;
 import org.junit.Test;
+import org.jvnet.hudson.test.Issue;
 import org.jvnet.hudson.test.JenkinsRule;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static org.junit.Assert.assertTrue;
-import org.jvnet.hudson.test.Issue;
 
 /**
  * Created by acearl on 4/16/2014.

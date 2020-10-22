@@ -4,10 +4,11 @@ import hudson.Extension;
 import hudson.model.ManagementLink;
 import hudson.plugins.emailext.ExtendedEmailPublisher;
 import hudson.security.Permission;
-import java.io.IOException;
-import javax.servlet.ServletException;
+
 import jenkins.model.Jenkins;
+
 import net.sf.json.JSONObject;
+
 import org.kohsuke.stapler.HttpRedirect;
 import org.kohsuke.stapler.HttpResponse;
 import org.kohsuke.stapler.QueryParameter;
@@ -15,6 +16,9 @@ import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
 import org.kohsuke.stapler.interceptor.RequirePOST;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 
 @Extension
 public class ExtEmailTemplateManagement extends ManagementLink {

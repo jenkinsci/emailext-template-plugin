@@ -1,12 +1,14 @@
-package org.jeninsci.plugins.emailext_template.configurationslicing;
+package org.jenkinsci.plugins.emailext_template.configurationslicing;
+
+import static org.junit.Assert.assertTrue;
 
 import hudson.model.AbstractProject;
 import hudson.model.FreeStyleProject;
 import hudson.plugins.emailext.ExtendedEmailPublisher;
+
 import org.jenkinsci.plugins.emailext_template.ExtendedEmailPublisherTemplate;
 import org.jenkinsci.plugins.emailext_template.ExtendedEmailTemplatePublisher;
 import org.jenkinsci.plugins.emailext_template.TemplateId;
-import org.jenkinsci.plugins.emailext_template.configurationslicing.ExtEmailTemplateSlicer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -17,8 +19,6 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by mgaunin on 19/05/16.
