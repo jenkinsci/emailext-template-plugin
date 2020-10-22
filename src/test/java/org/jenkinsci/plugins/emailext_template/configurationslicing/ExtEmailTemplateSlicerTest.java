@@ -52,7 +52,7 @@ public class ExtEmailTemplateSlicerTest {
         for (final TemplateId id : ids) {
             assertTrue(ID_TEMP1.equalsIgnoreCase(id.getTemplateId()));
         }
-        final StringBuffer sb = new StringBuffer();
+        final StringBuilder sb = new StringBuilder();
         sb.append(NAME_TEMP1).append(DELIM).append(NAME_TEMP2);
         // Set a second template
         spec.setValues(project, Collections.singletonList(sb.toString()));
