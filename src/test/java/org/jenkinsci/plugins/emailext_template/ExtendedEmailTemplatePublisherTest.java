@@ -1,4 +1,4 @@
-package org.jeninsci.plugins.emailext_template;
+package org.jenkinsci.plugins.emailext_template;
 
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;

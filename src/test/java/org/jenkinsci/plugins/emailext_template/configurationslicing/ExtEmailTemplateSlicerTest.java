@@ -1,4 +1,4 @@
-package org.jeninsci.plugins.emailext_template.configurationslicing;
+package org.jenkinsci.plugins.emailext_template.configurationslicing;
 
 import hudson.model.AbstractProject;
 import hudson.model.FreeStyleProject;
