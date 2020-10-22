@@ -133,11 +133,11 @@ public class ExtEmailTemplateManagement extends ManagementLink {
     }
     
     private ExtendedEmailTemplatePublisher.DescriptorImpl getPublisherDescriptor() {
-        return Jenkins.getInstance().getDescriptorByType(ExtendedEmailTemplatePublisher.DescriptorImpl.class);
+        return Jenkins.get().getDescriptorByType(ExtendedEmailTemplatePublisher.DescriptorImpl.class);
     }
     
     private void checkPermission(Permission permission) {
-        Jenkins.getInstance().checkPermission(permission);
+        Jenkins.get().checkPermission(permission);
     }
     
 }

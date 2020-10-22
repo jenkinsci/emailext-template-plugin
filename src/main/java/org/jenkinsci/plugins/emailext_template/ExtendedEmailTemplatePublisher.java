@@ -82,7 +82,7 @@ public class ExtendedEmailTemplatePublisher extends Notifier /*implements Matrix
     
     @Override
     public DescriptorImpl getDescriptor() {
-        return (DescriptorImpl) Jenkins.getInstance().getDescriptor(getClass());
+        return (DescriptorImpl) Jenkins.get().getDescriptor(getClass());
     }
     
     @Extension
