@@ -106,7 +106,7 @@ public class ExtEmailTemplateSlicerTest {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         descriptor = (ExtendedEmailTemplatePublisher.DescriptorImpl)j.jenkins.getDescriptor(ExtendedEmailTemplatePublisher.class);
         descriptor.addTemplate(new ExtendedEmailPublisherTemplate(ID_TEMP1, NAME_TEMP1, "Desc", new ExtendedEmailPublisher()));
         descriptor.addTemplate(new ExtendedEmailPublisherTemplate(ID_TEMP2, NAME_TEMP2, "Desc", new ExtendedEmailPublisher()));
