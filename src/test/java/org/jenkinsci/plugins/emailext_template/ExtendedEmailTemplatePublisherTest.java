@@ -29,7 +29,7 @@ public class ExtendedEmailTemplatePublisherTest {
     @Issue("JENKINS-22610")
     public void testRemovedTemplate() throws Exception {
         ExtendedEmailTemplatePublisher.DescriptorImpl descriptor = (ExtendedEmailTemplatePublisher.DescriptorImpl)j.jenkins.getDescriptor(ExtendedEmailTemplatePublisher.class);
-        List<EmailTrigger> triggers = new ArrayList<EmailTrigger>();
+        List<EmailTrigger> triggers = new ArrayList<>();
         triggers.add(new AlwaysTrigger(true, false, false, false, "mickeymouse@gmail.com", "", "Test Email", "Howdy!", "", 0, "project"));
 
         ExtendedEmailPublisher publisher = new ExtendedEmailPublisher("$DEFAULT_RECIPIENTS", "html", "$DEFAULT_SUBJECT", "$DEFAULT_CONTENT", "", "", 0, "$DEFAULT_REPLYTO", false, triggers, MatrixTriggerMode.ONLY_PARENT);
