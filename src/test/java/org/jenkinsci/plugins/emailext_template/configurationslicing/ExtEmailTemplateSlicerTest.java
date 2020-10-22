@@ -2,7 +2,6 @@ package org.jenkinsci.plugins.emailext_template.configurationslicing;
 
 import static org.junit.Assert.assertTrue;
 
-import hudson.model.AbstractProject;
 import hudson.model.FreeStyleProject;
 import hudson.plugins.emailext.ExtendedEmailPublisher;
 
@@ -24,13 +23,13 @@ import java.util.List;
  * Created by mgaunin on 19/05/16.
  */
 public class ExtEmailTemplateSlicerTest {
-    private static String ID_TEMP1 = "Id1";
-    private static String ID_TEMP2 = "Id2";
-    private static String ID_TEMP3 = "Id3";
-    private static String NAME_TEMP1 = "Temp1";
-    private static String NAME_TEMP2 = "Temp2";
-    private static String NAME_TEMP3 = "Temp3";
-    private static String DELIM = ",";
+    private static final String ID_TEMP1 = "Id1";
+    private static final String ID_TEMP2 = "Id2";
+    private static final String ID_TEMP3 = "Id3";
+    private static final String NAME_TEMP1 = "Temp1";
+    private static final String NAME_TEMP2 = "Temp2";
+    private static final String NAME_TEMP3 = "Temp3";
+    private static final String DELIM = ",";
 
     @Rule
     final public JenkinsRule j = new JenkinsRule();
@@ -40,7 +39,7 @@ public class ExtEmailTemplateSlicerTest {
 
     @Test
     public void testAddTemplate() throws IOException {
-        final AbstractProject project = createProject("Job", null);
+        final FreeStyleProject project = createProject("Job", null);
         // Let's check that there is no template yet
         List<String> values = spec.getValues(project);
         assertTrue(values.get(0).equalsIgnoreCase(spec.getDefaultValueString()));
@@ -53,7 +52,7 @@ public class ExtEmailTemplateSlicerTest {
         for (final TemplateId id : ids) {
             assertTrue(ID_TEMP1.equalsIgnoreCase(id.getTemplateId()));
         }
-        final StringBuffer sb = new StringBuffer();
+        final StringBuilder sb = new StringBuilder();
         sb.append(NAME_TEMP1).append(DELIM).append(NAME_TEMP2);
         // Set a second template
         spec.setValues(project, Collections.singletonList(sb.toString()));
@@ -73,7 +72,7 @@ public class ExtEmailTemplateSlicerTest {
 
     @Test
     public void testRemoveTemplate() throws IOException {
-        final AbstractProject project = createProject("Job", null);
+        final FreeStyleProject project = createProject("Job", null);
         StringBuffer sb = new StringBuffer();
         sb.append(NAME_TEMP1).append(DELIM).append(NAME_TEMP2).append(DELIM).append(NAME_TEMP3);
         // Set 3 templates
@@ -107,7 +106,7 @@ public class ExtEmailTemplateSlicerTest {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         descriptor = (ExtendedEmailTemplatePublisher.DescriptorImpl)j.jenkins.getDescriptor(ExtendedEmailTemplatePublisher.class);
         descriptor.addTemplate(new ExtendedEmailPublisherTemplate(ID_TEMP1, NAME_TEMP1, "Desc", new ExtendedEmailPublisher()));
         descriptor.addTemplate(new ExtendedEmailPublisherTemplate(ID_TEMP2, NAME_TEMP2, "Desc", new ExtendedEmailPublisher()));
@@ -121,7 +120,8 @@ public class ExtEmailTemplateSlicerTest {
         descriptor = null;
     }
 
-    private AbstractProject createProject(final String name, final List<TemplateId> templateIds)  throws IOException {
+    private FreeStyleProject createProject(final String name, final List<TemplateId> templateIds)
+            throws IOException {
         FreeStyleProject project = j.createFreeStyleProject(name);
         if (templateIds != null && !templateIds.isEmpty()) {
             project.getPublishersList().add(new ExtendedEmailTemplatePublisher(templateIds));

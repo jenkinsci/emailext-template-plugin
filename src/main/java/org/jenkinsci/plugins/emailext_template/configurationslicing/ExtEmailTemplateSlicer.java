@@ -60,8 +60,8 @@ public class ExtEmailTemplateSlicer extends UnorderedStringSlicer<AbstractProjec
 
         @Override
         public List<String> getValues(AbstractProject<?, ?> project) {
-            final List<String> values = new ArrayList<String>();
-            final StringBuffer value = new StringBuffer();
+            final List<String> values = new ArrayList<>();
+            final StringBuilder value = new StringBuilder();
             final ExtendedEmailTemplatePublisher publisher = getExtendedEmailTemplatePublisher(project);
             if (publisher != null) {
                 final Collection<TemplateId> ids = publisher.getTemplateIds();
@@ -98,7 +98,7 @@ public class ExtEmailTemplateSlicer extends UnorderedStringSlicer<AbstractProjec
             if (list.isEmpty()) {
                 return false;
             }
-            final List<TemplateId> templateIds = new ArrayList<TemplateId>();
+            final List<TemplateId> templateIds = new ArrayList<>();
             ExtendedEmailTemplatePublisher publisher = getExtendedEmailTemplatePublisher(project);
             boolean defaultValue = (list.size() == 1)
                     && (getDefaultValueString().equalsIgnoreCase(list.get(0)) || list.get(0).trim().isEmpty());

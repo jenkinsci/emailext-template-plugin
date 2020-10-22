@@ -50,8 +50,6 @@ public class ExtEmailTemplateManagement extends ManagementLink {
      *            request
      * @param rsp
      *            response
-     * @throws IOException
-     * @throws ServletException
      */
     public void doAddTemplate(StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException {
         checkPermission(Jenkins.ADMINISTER);   
@@ -70,8 +68,6 @@ public class ExtEmailTemplateManagement extends ManagementLink {
      *            response
      * @param templateId
      *            the id of the template to be loaded in to the edit view.
-     * @throws IOException
-     * @throws ServletException
      */
     public void doEditTemplate(StaplerRequest req, StaplerResponse rsp, @QueryParameter("id") String templateId) throws IOException, ServletException {
         checkPermission(Jenkins.ADMINISTER);
@@ -96,7 +92,6 @@ public class ExtEmailTemplateManagement extends ManagementLink {
      * @param templateId
      *            the id of the template to be removed
      * @return forward to 'index'
-     * @throws IOException
      */
     @RequirePOST
     public HttpResponse doRemoveTemplate(StaplerRequest res, StaplerResponse rsp, @QueryParameter("id") String templateId) throws IOException {
@@ -133,11 +128,11 @@ public class ExtEmailTemplateManagement extends ManagementLink {
     }
     
     private ExtendedEmailTemplatePublisher.DescriptorImpl getPublisherDescriptor() {
-        return Jenkins.getInstance().getDescriptorByType(ExtendedEmailTemplatePublisher.DescriptorImpl.class);
+        return Jenkins.get().getDescriptorByType(ExtendedEmailTemplatePublisher.DescriptorImpl.class);
     }
     
     private void checkPermission(Permission permission) {
-        Jenkins.getInstance().checkPermission(permission);
+        Jenkins.get().checkPermission(permission);
     }
     
 }
