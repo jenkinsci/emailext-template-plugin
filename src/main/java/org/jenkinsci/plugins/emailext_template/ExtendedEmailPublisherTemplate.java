@@ -7,10 +7,13 @@
 package org.jenkinsci.plugins.emailext_template;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import hudson.plugins.emailext.ExtendedEmailPublisher;
-import java.io.Serializable;
+
 import org.apache.commons.lang.StringUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
+
+import java.io.Serializable;
 
 /**
  *
