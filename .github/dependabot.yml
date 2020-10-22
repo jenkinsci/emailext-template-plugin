@@ -6,5 +6,8 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    ignore:
+      - dependency-name: "org.jenkins-ci.plugins:configurationslicing"
+      - dependency-name: "org.jenkins-ci.plugins:email-ext"
     reviewers:
       - "basil"
