@@ -23,13 +23,13 @@ import java.util.List;
  * Created by mgaunin on 19/05/16.
  */
 public class ExtEmailTemplateSlicerTest {
-    private static String ID_TEMP1 = "Id1";
-    private static String ID_TEMP2 = "Id2";
-    private static String ID_TEMP3 = "Id3";
-    private static String NAME_TEMP1 = "Temp1";
-    private static String NAME_TEMP2 = "Temp2";
-    private static String NAME_TEMP3 = "Temp3";
-    private static String DELIM = ",";
+    private static final String ID_TEMP1 = "Id1";
+    private static final String ID_TEMP2 = "Id2";
+    private static final String ID_TEMP3 = "Id3";
+    private static final String NAME_TEMP1 = "Temp1";
+    private static final String NAME_TEMP2 = "Temp2";
+    private static final String NAME_TEMP3 = "Temp3";
+    private static final String DELIM = ",";
 
     @Rule
     final public JenkinsRule j = new JenkinsRule();
