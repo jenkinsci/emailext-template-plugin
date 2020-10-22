@@ -1,10 +1,8 @@
 package org.jenkinsci.plugins.emailext_template;
 
-import static org.junit.Assert.assertTrue;
 
-import hudson.model.AbstractBuild;
-import hudson.model.AbstractProject;
-import hudson.model.Cause;
+import hudson.model.FreeStyleBuild;
+import hudson.model.FreeStyleProject;
 import hudson.plugins.emailext.ExtendedEmailPublisher;
 import hudson.plugins.emailext.MatrixTriggerMode;
 import hudson.plugins.emailext.plugins.EmailTrigger;
@@ -40,17 +38,17 @@ public class ExtendedEmailTemplatePublisherTest {
         descriptor.addTemplate(template);
         ExtendedEmailTemplatePublisher templatePublisher = new ExtendedEmailTemplatePublisher(Collections.singletonList(new TemplateId(template.getId())));
 
-        AbstractProject p = j.createFreeStyleProject("Test");
+        FreeStyleProject p = j.createFreeStyleProject();
         p.getPublishersList().add(templatePublisher);
 
-        AbstractBuild b = (AbstractBuild)p.scheduleBuild2(0, new Cause.UserCause()).get();
-        assertTrue("Template should exist, so we shouldn't get the message",
-                !b.getLog(100).contains(Messages.TemplateIdRemoved(template.getId())));
+        FreeStyleBuild b = j.buildAndAssertSuccess(p);
+        // Template should exist, so we shouldn't get the message
+        j.assertLogNotContains(Messages.TemplateIdRemoved(template.getId()), b);
 
         descriptor.removeTemplateById(template.getId());
 
-        b = (AbstractBuild)p.scheduleBuild2(0, new Cause.UserCause()).get();
-        assertTrue("Template was removed, so we should get the message",
-                b.getLog(100).contains(Messages.TemplateIdRemoved(template.getId())));
+        b = j.buildAndAssertSuccess(p);
+        // Template was removed, so we should get the message
+        j.assertLogContains(Messages.TemplateIdRemoved(template.getId()), b);
     }
 }

@@ -2,7 +2,6 @@ package org.jenkinsci.plugins.emailext_template.configurationslicing;
 
 import static org.junit.Assert.assertTrue;
 
-import hudson.model.AbstractProject;
 import hudson.model.FreeStyleProject;
 import hudson.plugins.emailext.ExtendedEmailPublisher;
 
@@ -40,7 +39,7 @@ public class ExtEmailTemplateSlicerTest {
 
     @Test
     public void testAddTemplate() throws IOException {
-        final AbstractProject project = createProject("Job", null);
+        final FreeStyleProject project = createProject("Job", null);
         // Let's check that there is no template yet
         List<String> values = spec.getValues(project);
         assertTrue(values.get(0).equalsIgnoreCase(spec.getDefaultValueString()));
@@ -73,7 +72,7 @@ public class ExtEmailTemplateSlicerTest {
 
     @Test
     public void testRemoveTemplate() throws IOException {
-        final AbstractProject project = createProject("Job", null);
+        final FreeStyleProject project = createProject("Job", null);
         StringBuffer sb = new StringBuffer();
         sb.append(NAME_TEMP1).append(DELIM).append(NAME_TEMP2).append(DELIM).append(NAME_TEMP3);
         // Set 3 templates
@@ -121,7 +120,8 @@ public class ExtEmailTemplateSlicerTest {
         descriptor = null;
     }
 
-    private AbstractProject createProject(final String name, final List<TemplateId> templateIds)  throws IOException {
+    private FreeStyleProject createProject(final String name, final List<TemplateId> templateIds)
+            throws IOException {
         FreeStyleProject project = j.createFreeStyleProject(name);
         if (templateIds != null && !templateIds.isEmpty()) {
             project.getPublishersList().add(new ExtendedEmailTemplatePublisher(templateIds));
