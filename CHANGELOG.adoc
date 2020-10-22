@@ -1,5 +1,9 @@
-= Change Log
+= Changelog
 :toc:
+
+== 1.2 and later
+
+* Changelog moved to https://github.com/jenkinsci/emailext-template-plugin/releases[GitHub Releases].
 
 == 1.1 (September 25, 2018)
 

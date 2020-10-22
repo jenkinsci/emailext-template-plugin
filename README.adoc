@@ -1,33 +1,22 @@
 [[emailext-template-plugin]]
 = Email Extension Template Plugin
 
-link:https://ci.jenkins.io/job/Plugins/job/emailext-template-plugin/job/master/[image:https://ci.jenkins.io/job/Plugins/job/emailext-template-plugin/job/master/badge/icon[Build]]
-link:https://github.com/jenkinsci/emailext-template-plugin/graphs/contributors[image:https://img.shields.io/github/contributors/jenkinsci/emailext-template-plugin.svg?color=blue[Contributors]]
-link:https://plugins.jenkins.io/emailext-template/[image:https://img.shields.io/jenkins/plugin/i/emailext-template.svg?color=blue&label=installations[Jenkins Plugin Installs]]
-link:https://plugins.jenkins.io/emailext-template/[image:https://img.shields.io/jenkins/plugin/v/emailext-template.svg[Plugin]]
+link:https://ci.jenkins.io/job/Plugins/job/emailext-template-plugin/job/master/[image:https://ci.jenkins.io/job/Plugins/job/emailext-template-plugin/job/master/badge/icon[Build Status]]
+link:https://github.com/jenkinsci/emailext-template-plugin/graphs/contributors[image:https://img.shields.io/github/contributors/jenkinsci/emailext-template-plugin.svg[Contributors]]
+link:https://plugins.jenkins.io/emailext-template[image:https://img.shields.io/jenkins/plugin/v/emailext-template.svg[Jenkins Plugin]]
+link:https://github.com/jenkinsci/emailext-template-plugin/releases/latest[image:https://img.shields.io/github/release/jenkinsci/emailext-template-plugin.svg?label=changelog[GitHub release]]
+link:https://plugins.jenkins.io/emailext-template[image:https://img.shields.io/jenkins/plugin/i/emailext-template.svg?color=blue[Jenkins Plugin Installs]]
 
-[WARNING]
-.Security issues
-====
-Older versions of this plugin may not be safe to use. Please review the following warnings before using an older version:
+== Introduction
 
-* https://jenkins.io/security/advisory/2018-09-25/#SECURITY-1125[CSRF vulnerability]
-====
-
-|===
-| Plugin Information
-
-| View Email Extension Template https://plugins.jenkins.io/emailext-template[on the plugin site]
-| for more information.
-|===
-
-This plugin allows you to configure templates for email-ext that can be
+This plugin allows you to configure templates for Email Extension that can be
 reused across multiple jobs.
 
-== Check out and build
+== Issues
 
-How to check out the source and build:
+Report issues and enhancements in the https://issues.jenkins-ci.org/[Jenkins issue tracker].
+Use the `emailext-template-plugin` component in the `JENKINS` project.
 
-* git clone https://github.com/jenkinsci/emailext-template-plugin.git
-* cd emailext-template-plugin
-* mvn clean install
+== Contributing
+
+Refer to our https://github.com/jenkinsci/.github/blob/master/CONTRIBUTING.md[contribution guidelines].
