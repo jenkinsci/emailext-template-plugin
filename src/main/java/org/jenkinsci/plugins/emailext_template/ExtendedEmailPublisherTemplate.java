@@ -6,6 +6,7 @@
 
 package org.jenkinsci.plugins.emailext_template;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import hudson.plugins.emailext.ExtendedEmailPublisher;
 import java.io.Serializable;
 import org.apache.commons.lang.StringUtils;
@@ -23,6 +24,7 @@ public class ExtendedEmailPublisherTemplate implements Serializable {
     
     private String description;
     
+    @SuppressFBWarnings("SE_BAD_FIELD") // TODO
     private ExtendedEmailPublisher publisher;
     
     @DataBoundConstructor
