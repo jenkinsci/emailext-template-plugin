@@ -3,25 +3,20 @@
 
 == 1.2 and later
 
-* Changelog moved to https://github.com/jenkinsci/emailext-template-plugin/releases[GitHub Releases].
+* Changelog moved to link:https://github.com/jenkinsci/emailext-template-plugin/releases[GitHub Releases]
 
 == 1.1 (September 25, 2018)
 
-* https://jenkins.io/security/advisory/2018-09-25/#SECURITY-1125[Fix security
-issue]
+* link:https://jenkins.io/security/advisory/2018-09-25/#SECURITY-1125[SECURITY-1125]: CSRF vulnerability in form submission handling
 
 == 0.4 (May 20, 2015)
 
-* Updated pom with wiki information and generated release
+* Update `pom.xml` with wiki information
 
 == 0.3 (November 16, 2014)
 
-* Fixed issue that the were not displayed correctly in the job
-configuration (https://issues.jenkins-ci.org/browse/JENKINS-22933[issue
-#22933])
-* Fixed issue where templates were not saved to disk after edit
-(https://issues.jenkins-ci.org/browse/JENKINS-23866[issue
-#23866])
+* link:https://issues.jenkins.io/browse/JENKINS-22933[JENKINS-22933]: Template name is not displayed correctly in job configuration
+* link:https://issues.jenkins.io/browse/JENKINS-23866[JENKINS-23866]: Templates are not saved to disk after edit
 
 == 0.2 (May 26, 2014)
 
