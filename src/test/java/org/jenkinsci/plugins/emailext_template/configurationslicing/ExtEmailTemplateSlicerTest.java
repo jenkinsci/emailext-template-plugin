@@ -73,18 +73,18 @@ public class ExtEmailTemplateSlicerTest {
     @Test
     public void testRemoveTemplate() throws IOException {
         final FreeStyleProject project = createProject("Job", null);
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append(NAME_TEMP1).append(DELIM).append(NAME_TEMP2).append(DELIM).append(NAME_TEMP3);
         // Set 3 templates
         spec.setValues(project, Collections.singletonList(sb.toString()));
         List<String> values = spec.getValues(project);
         assertTrue(values.get(0).equalsIgnoreCase(sb.toString()));
-        sb = new StringBuffer();
+        sb = new StringBuilder();
         sb.append(NAME_TEMP1).append(DELIM).append(DELIM).append(NAME_TEMP3);
         // Remove the second one with typo in the value (2 delimiters)
         spec.setValues(project, Collections.singletonList(sb.toString()));
         values = spec.getValues(project);
-        sb = new StringBuffer();
+        sb = new StringBuilder();
         sb.append(NAME_TEMP1).append(DELIM).append(NAME_TEMP3);
         assertTrue(values.get(0).equalsIgnoreCase(sb.toString()));
         ExtendedEmailTemplatePublisher publisher = (ExtendedEmailTemplatePublisher)project.getPublishersList().get(0);
