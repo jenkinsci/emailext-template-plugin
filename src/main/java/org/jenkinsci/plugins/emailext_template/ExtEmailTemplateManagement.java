@@ -94,7 +94,7 @@ public class ExtEmailTemplateManagement extends ManagementLink {
      * @return forward to 'index'
      */
     @RequirePOST
-    public HttpResponse doRemoveTemplate(StaplerRequest res, StaplerResponse rsp, @QueryParameter("id") String templateId) throws IOException {
+    public HttpResponse doRemoveTemplate(StaplerRequest res, StaplerResponse rsp, @QueryParameter("id") String templateId) {
         checkPermission(Jenkins.ADMINISTER);
         ExtendedEmailTemplatePublisher.DescriptorImpl descriptor = getPublisherDescriptor();
         descriptor.removeTemplateById(templateId);
