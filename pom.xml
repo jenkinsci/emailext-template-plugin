@@ -10,7 +10,7 @@
 
   <groupId>org.jenkinsci.plugins</groupId>
   <artifactId>emailext-template</artifactId>
-  <version>${revision}${changelist}</version>
+  <version>1.4</version>
   <packaging>hpi</packaging>
   <name>Email Extension Template Plugin</name>
   <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
@@ -89,7 +89,7 @@
     <connection>scm:git:git://github.com/${gitHubRepo}.git</connection>
     <developerConnection>scm:git:git@github.com:${gitHubRepo}.git</developerConnection>
     <url>https://github.com/${gitHubRepo}</url>
-    <tag>${scmTag}</tag>
+    <tag>emailext-template-1.4</tag>
   </scm>
 
   <pluginRepositories>
