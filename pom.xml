@@ -41,6 +41,20 @@
           <artifactId>email-ext</artifactId>
           <groupId>org.jenkins-ci.plugins</groupId>
           <version>2.43</version>
+          <exclusions>
+            <exclusion>
+              <groupId>javax.annotation</groupId>
+              <artifactId>javax.annotation-api</artifactId>
+            </exclusion>
+            <exclusion>
+              <groupId>javax.ejb</groupId>
+              <artifactId>ejb</artifactId>
+            </exclusion>
+            <exclusion>
+              <groupId>javax.mail</groupId>
+              <artifactId>mail</artifactId>
+            </exclusion>
+          </exclusions>
       </dependency>
       <dependency>
           <groupId>org.jenkins-ci.plugins</groupId>
