@@ -31,9 +31,9 @@ def t = namespace("/lib/hudson")
 l.header()
 l.side_panel() {
     l.tasks {
-      l.task(icon:"images/24x24/setting.gif", href:"${rootURL}/manage", title:_("Manage Jenkins"))
-      l.task(icon:"images/24x24/next.gif", href:"${rootURL}/emailexttemplates", title:_("Editable Email Templates"))
-      l.task(icon:"images/24x24/new-package.gif", href:"addTemplate", title:_("Add New Template"))
+      l.task(icon:"icon-gear icon-md", href:"${rootURL}/manage", title:_("Manage Jenkins"))
+      l.task(icon:"icon-next icon-md", href:"${rootURL}/emailexttemplates", title:_("Editable Email Templates"))
+      l.task(icon:"icon-new-package icon-md", href:"addTemplate", title:_("Add New Template"))
     }
     t.executors(computers:h.singletonList(it))
 }

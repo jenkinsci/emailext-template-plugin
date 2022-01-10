@@ -25,7 +25,7 @@ public class ExtEmailTemplateManagement extends ManagementLink {
 
     @Override
     public String getIconFileName() {
-        return "/plugin/emailext-template/images/mail-mark-read.png";
+        return "/plugin/emailext-template/images/mail-mark-read.svg";
     }
 
     @Override

@@ -43,12 +43,8 @@ l.layout(permission:app.ADMINISTER, norefresh: true) {
       descriptor.templates.each { t ->      
         tr(valign:"center", style:"border-top: thin inset darkgray") {
           td(width:"32") {
-            a(href:"editTemplate?id=${t.id}") {
-              img(width:"16", height:"16", title:_("Edit template")+" "+t.name, src:"${imagesURL}/16x16/document_edit.gif")
-            }
-            a(href:"removeTemplate?id=${t.id}", onclick:"return emailexttemplate_confirmDelete('${t.name}', '${t.id}')") {
-              img(width:"16", height:"16", title:_("Remove template")+" "+t.name, src:"${imagesURL}/16x16/edit-delete.gif")
-            }
+            l.task(icon:"icon-notepad icon-sm", href:"editTemplate?id=${t.id}", title:_("Edit template")+" "+t.name)
+            l.task(icon:"icon-edit-delete icon-sm", href:"removeTemplate?id=${t.id}", onclick:"return emailexttemplate_confirmDelete('${t.name}', '${t.id}')", title:_("Remove template")+" "+t.name)
             form(method: "post", action: "removeTemplate", id:"removeForm") {
               input(type: "hidden", "name": "id", id:"removeId")
             }
