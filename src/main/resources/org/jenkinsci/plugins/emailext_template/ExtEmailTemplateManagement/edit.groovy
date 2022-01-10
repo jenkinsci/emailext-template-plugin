@@ -31,9 +31,7 @@ l.layout(norefresh:"true") {
   st.include(page:"sidepanel")
   l.main_panel {
     h1 {
-      img(width:"48", height:"48", src:"${imagesURL}/16x16/document_edit.gif")
-      img(width:"16", height:"16", src:"${imagesURL}/16x16/empty.gif")
-      _("Edit Email Template")
+      l.task(icon:"icon-notepad icon-xlg", title:_("Edit Email Template"))
     }
     f.form(method:"post", action:"saveTemplate") {
       f.section(title:_("the template"), name:"template") {
