@@ -35,5 +35,5 @@ l.side_panel() {
       l.task(icon:"icon-next icon-md", href:"${rootURL}/emailexttemplates", title:_("Editable Email Templates"))
       l.task(icon:"icon-new-package icon-md", href:"addTemplate", title:_("Add New Template"))
     }
-    t.executors(computers:h.singletonList(it))
+    t.executors(computers: [it])
 }
