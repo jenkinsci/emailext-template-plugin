@@ -33,7 +33,7 @@ public class ExtendedEmailTemplatePublisherTest {
         List<EmailTrigger> triggers = new ArrayList<>();
         triggers.add(new AlwaysTrigger(Collections.singletonList(new ListRecipientProvider()), "mickeymouse@gmail.com", "", "Test Email", "Howdy!", "", 0, "project"));
 
-        ExtendedEmailPublisher publisher = new ExtendedEmailPublisher("$DEFAULT_RECIPIENTS", "html", "$DEFAULT_SUBJECT", "$DEFAULT_CONTENT", "", "", 0, "$DEFAULT_REPLYTO", false, triggers, MatrixTriggerMode.ONLY_PARENT, false, Collections.emptyList());
+        ExtendedEmailPublisher publisher = new ExtendedEmailPublisher("$DEFAULT_RECIPIENTS", "html", "$DEFAULT_SUBJECT", "$DEFAULT_CONTENT", "", "", 0, "$DEFAULT_REPLYTO", "$DEFAULT_FROM", false, triggers, MatrixTriggerMode.ONLY_PARENT, false, Collections.emptyList());
 
         ExtendedEmailPublisherTemplate template = new ExtendedEmailPublisherTemplate("template1", "Test Template", "Simple test template", publisher);
         descriptor.addTemplate(template);
