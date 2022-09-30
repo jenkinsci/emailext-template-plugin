@@ -19,6 +19,8 @@ import java.io.Serializable;
  *
  * @author acearl
  */
+@SuppressFBWarnings(value = "SE_NO_SERIALVERSIONID",
+                    justification = "Common practice to not define serialVersionUID")
 public class ExtendedEmailPublisherTemplate implements Serializable {
     
     private String id;
