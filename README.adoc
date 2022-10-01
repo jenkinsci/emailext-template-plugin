@@ -12,7 +12,7 @@ This plugin allows you to configure templates for link:https://github.com/jenkin
 
 == Issues
 
-Report issues and enhancements in the link:https://issues.jenkins.io/[Jenkins issue tracker].
+Report issues and enhancements in the link:https://www.jenkins.io/participate/report-issue/redirect/#18764[Jenkins issue tracker].
 Use the `emailext-template-plugin` component in the `JENKINS` project.
 
 == Contributing
