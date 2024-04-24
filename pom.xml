@@ -72,13 +72,6 @@
     </license>
   </licenses>
 
-  <developers>
-    <developer>
-      <id>basil</id>
-      <name>Basil Crow</name>
-    </developer>
-  </developers>
-
   <repositories>
     <repository>
       <id>repo.jenkins-ci.org</id>
