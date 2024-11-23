@@ -34,7 +34,7 @@ l.layout(permission:app.ADMINISTER, norefresh: true) {
   st.include(page:"sidepanel")
   l.main_panel {
     h1(_("Editable Email Template Management")) {
-      img(src:"${rootURL}/${iconFileName}", alt:"")      
+      img(src:"${resURL}${iconFileName}", alt:"")
     }
     
     p(_("intro"))
@@ -44,10 +44,8 @@ l.layout(permission:app.ADMINISTER, norefresh: true) {
         tr(valign:"center", style:"border-top: thin inset darkgray") {
           td(width:"32") {
             l.task(icon:"icon-notepad icon-sm", href:"editTemplate?id=${t.id}", title:_("Edit template")+" "+t.name)
-            l.task(icon:"icon-edit-delete icon-sm", href:"removeTemplate?id=${t.id}", onclick:"return emailexttemplate_confirmDelete('${t.name}', '${t.id}')", title:_("Remove template")+" "+t.name)
-            form(method: "post", action: "removeTemplate", id:"removeForm") {
-              input(type: "hidden", "name": "id", id:"removeId")
-            }
+            l.task(icon:"icon-edit-delete icon-sm", href:"removeTemplate?id=${t.id}", post: true, requiresConfirmation: true,
+                    title:_("Remove template")+" "+t.name, confirmationMessage: "Are you sure you want to delete [${t.name}]?")
           }
           td {
             b(t.name)
@@ -59,13 +57,5 @@ l.layout(permission:app.ADMINISTER, norefresh: true) {
         }	              
       }
     }
-    
-    script("function emailexttemplate_confirmDelete(name, id) {\n" +
-        "if (confirm(\"Are you sure you want to delete [\"+name+\"]?\")) {\n" +
-            "document.getElementById('removeId').value = id;\n" +
-            "document.getElementById('removeForm').submit();\n" +
-        "}\n" +
-        "return false;\n" +
-        "}\n")
   }
 }
