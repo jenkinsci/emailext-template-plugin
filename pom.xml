@@ -42,7 +42,7 @@
       <dependency>
           <artifactId>email-ext</artifactId>
           <groupId>org.jenkins-ci.plugins</groupId>
-          <version>2.90</version>
+          <version>1855.vd9e491cb_de1e</version>
           <exclusions>
             <exclusion>
               <groupId>javax.annotation</groupId>
