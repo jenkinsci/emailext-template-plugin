@@ -55,7 +55,11 @@ public class ExtEmailTemplateSlicer extends UnorderedStringSlicer<AbstractProjec
 
         @Override
         public List<AbstractProject<?, ?>> getWorkDomain() {
-            return TopLevelItemSelector.getAllTopLevelItems(AbstractProject.class);
+            List<AbstractProject<?, ?>> result = new ArrayList<>();
+            for (AbstractProject<?, ?> project : TopLevelItemSelector.getAllTopLevelItems(AbstractProject.class)) {
+                result.add(project);
+            }
+            return result;
         }
 
         @Override

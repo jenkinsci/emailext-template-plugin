@@ -12,13 +12,13 @@ import net.sf.json.JSONObject;
 import org.kohsuke.stapler.HttpRedirect;
 import org.kohsuke.stapler.HttpResponse;
 import org.kohsuke.stapler.QueryParameter;
-import org.kohsuke.stapler.StaplerRequest;
-import org.kohsuke.stapler.StaplerResponse;
+import org.kohsuke.stapler.StaplerRequest2;
+import org.kohsuke.stapler.StaplerResponse2;
 import org.kohsuke.stapler.interceptor.RequirePOST;
 
 import java.io.IOException;
 
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletException;
 
 @Extension
 public class ExtEmailTemplateManagement extends ManagementLink {
@@ -51,7 +51,7 @@ public class ExtEmailTemplateManagement extends ManagementLink {
      * @param rsp
      *            response
      */
-    public void doAddTemplate(StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException {
+    public void doAddTemplate(StaplerRequest2 req, StaplerResponse2 rsp) throws IOException, ServletException {
         checkPermission(Jenkins.ADMINISTER);   
         
         ExtendedEmailPublisherTemplate template = new ExtendedEmailPublisherTemplate();        
@@ -69,7 +69,7 @@ public class ExtEmailTemplateManagement extends ManagementLink {
      * @param templateId
      *            the id of the template to be loaded in to the edit view.
      */
-    public void doEditTemplate(StaplerRequest req, StaplerResponse rsp, @QueryParameter("id") String templateId) throws IOException, ServletException {
+    public void doEditTemplate(StaplerRequest2 req, StaplerResponse2 rsp, @QueryParameter("id") String templateId) throws IOException, ServletException {
         checkPermission(Jenkins.ADMINISTER);
 
         ExtendedEmailTemplatePublisher.DescriptorImpl descriptor = getPublisherDescriptor();        
@@ -94,7 +94,7 @@ public class ExtEmailTemplateManagement extends ManagementLink {
      * @return forward to 'index'
      */
     @RequirePOST
-    public HttpResponse doRemoveTemplate(StaplerRequest res, StaplerResponse rsp, @QueryParameter("id") String templateId) {
+    public HttpResponse doRemoveTemplate(StaplerRequest2 res, StaplerResponse2 rsp, @QueryParameter("id") String templateId) {
         checkPermission(Jenkins.ADMINISTER);
         ExtendedEmailTemplatePublisher.DescriptorImpl descriptor = getPublisherDescriptor();
         descriptor.removeTemplateById(templateId);
@@ -102,7 +102,7 @@ public class ExtEmailTemplateManagement extends ManagementLink {
     }
 
     @RequirePOST
-    public HttpResponse doSaveTemplate(StaplerRequest req) {
+    public HttpResponse doSaveTemplate(StaplerRequest2 req) {
         checkPermission(Jenkins.ADMINISTER);
         try {
             ExtendedEmailTemplatePublisher.DescriptorImpl descriptor = getPublisherDescriptor();
