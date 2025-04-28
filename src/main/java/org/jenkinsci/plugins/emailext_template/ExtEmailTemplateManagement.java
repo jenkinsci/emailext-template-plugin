@@ -1,5 +1,7 @@
 package org.jenkinsci.plugins.emailext_template;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
+
 import hudson.Extension;
 import hudson.model.ManagementLink;
 import hudson.plugins.emailext.ExtendedEmailPublisher;
@@ -25,7 +27,7 @@ public class ExtEmailTemplateManagement extends ManagementLink {
 
     @Override
     public String getIconFileName() {
-        return "/plugin/emailext-template/images/mail-mark-read.svg";
+        return "symbol-mail-open-outline plugin-ionicons-api";
     }
 
     @Override
@@ -135,5 +137,10 @@ public class ExtEmailTemplateManagement extends ManagementLink {
         Jenkins.get().checkPermission(permission);
     }
     
+    @NonNull
+    @Override
+    public Category getCategory() {
+        return Category.CONFIGURATION;
+     }
 }
 
