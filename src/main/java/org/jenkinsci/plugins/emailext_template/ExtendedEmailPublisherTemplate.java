@@ -10,7 +10,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import hudson.plugins.emailext.ExtendedEmailPublisher;
 
-import org.apache.commons.lang.StringUtils;
+
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.Serializable;
@@ -45,7 +45,7 @@ public class ExtendedEmailPublisherTemplate implements Serializable {
     }
     
     public String getId() {
-        if(StringUtils.isBlank(id)) {
+        if(id == null || id.trim().isEmpty()) {
             id = generateId();
         }
         return id;
