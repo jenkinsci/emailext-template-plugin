@@ -45,7 +45,7 @@ public class ExtendedEmailPublisherTemplate implements Serializable {
     }
     
     public String getId() {
-        if(id == null || id.trim().isEmpty()) {
+        if(id == null || id.isBlank()) {
             id = generateId();
         }
         return id;
