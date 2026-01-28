@@ -17,45 +17,67 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+LIABILITY, WHETHER IN AN ACTION, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+import hudson.Util
+
 def l = namespace("/lib/layout")
 def st = namespace("jelly:stapler")
 def j = namespace("jelly:core")
-//<j:jelly xmlns:j="jelly:core" xmlns:d="jelly:define"
-//	xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+def h = namespace("/lib/hudson")
 
 def iconFileName = it?.iconFileName
         
-l.layout(permission:app.ADMINISTER, norefresh: true) {
-  st.include(page:"sidepanel")
-  l.main_panel {
-    h1(_("Editable Email Template Management")) {
-      img(src:"${resURL}${iconFileName}", alt:"")
-    }
-    
-    p(_("intro"))
-    def descriptor = app.getDescriptorByType(org.jenkinsci.plugins.emailext_template.ExtendedEmailTemplatePublisher.DescriptorImpl.class)
-    table(class:"pane", style:"border-top: thin inset darkgray") {
-      descriptor.templates.each { t ->      
-        tr(valign:"center", style:"border-top: thin inset darkgray") {
-          td(width:"32") {
-            l.task(icon:"icon-notepad icon-sm", href:"editTemplate?id=${t.id}", title:_("Edit template")+" "+t.name)
-            l.task(icon:"icon-edit-delete icon-sm", href:"removeTemplate?id=${t.id}", post: true, requiresConfirmation: true,
-                    title:_("Remove template")+" "+t.name, confirmationMessage: "Are you sure you want to delete [${t.name}]?")
-          }
-          td {
-            b(t.name)
-          }
+l.layout(permission: app.ADMINISTER, norefresh: true) {
+    st.include(page: "sidepanel")
+    l.main_panel {
+        h1(_("Editable Email Template Management")) {
+            img(src: "${resURL}${iconFileName}", alt: "")
         }
-        tr {
-          td()
-          td(t.description)
-        }	              
-      }
+
+        p(_("intro"))
+
+        def descriptor = app.getDescriptorByType(
+            org.jenkinsci.plugins.emailext_template.ExtendedEmailTemplatePublisher.DescriptorImpl.class
+        )
+
+        table(class: "pane", style: "border-top: thin inset darkgray") {
+            descriptor.templates.each { t ->
+
+                // Escape once for JS-backed attributes
+                def safeName = Util.escape(t.name)
+
+                tr(valign: "center", style: "border-top: thin inset darkgray") {
+                    td(width: "32") {
+                        l.task(
+                            icon: "icon-notepad icon-sm",
+                            href: "editTemplate?id=${t.id}",
+                            title: _("Edit template") + " " + safeName
+                        )
+
+                        l.task(
+                            icon: "icon-edit-delete icon-sm",
+                            href: "removeTemplate?id=${t.id}",
+                            post: true,
+                            requiresConfirmation: true,
+                            title: _("Remove template") + " " + safeName,
+                            confirmationMessage: "Are you sure you want to delete [" + safeName + "]?"
+                        )
+                    }
+                    td {
+                        // HTML content is safe as-is
+                        b(t.name)
+                    }
+                }
+
+                tr {
+                    td()
+                    td(t.description)
+                }
+            }
+        }
     }
-  }
 }
