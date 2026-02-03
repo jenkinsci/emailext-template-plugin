@@ -17,7 +17,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION, TORT OR OTHERWISE, ARISING FROM,
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
@@ -30,7 +30,7 @@ def j = namespace("jelly:core")
 def h = namespace("/lib/hudson")
 
 def iconFileName = it?.iconFileName
-        
+
 l.layout(permission: app.ADMINISTER, norefresh: true) {
     st.include(page: "sidepanel")
     l.main_panel {
@@ -68,8 +68,7 @@ l.layout(permission: app.ADMINISTER, norefresh: true) {
                         )
                     }
                     td {
-                        // HTML content is safe as-is
-                        b(t.name)
+                        b(safeName)
                     }
                 }
 
