@@ -51,7 +51,7 @@
       <dependency>
           <groupId>org.jenkins-ci.plugins</groupId>
           <artifactId>configurationslicing</artifactId>
-          <version>664.vdda_74145b_b_d0</version>
+          <version>700.vd71e4a_3a_c0a_a_</version>
           <optional>true</optional>
       </dependency>
   </dependencies>
