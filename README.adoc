@@ -1,6 +1,6 @@
 = Email Extension Template Plugin
 
-link:https://ci.jenkins.io/job/Plugins/job/emailext-template-plugin/job/master/[image:https://ci.jenkins.io/job/Plugins/job/emailext-template-plugin/job/master/badge/icon[Build Status]]
+link:https://ci.jenkins.io/job/Plugins/job/emailext-template-plugin/job/master/[image:https://ci.jenkins.io/buildStatus/icon?job=Plugins%2Femailext-template-plugin%2Fmaster[Build Status]]
 link:https://github.com/jenkinsci/emailext-template-plugin/graphs/contributors[image:https://img.shields.io/github/contributors/jenkinsci/emailext-template-plugin.svg[Contributors]]
 link:https://plugins.jenkins.io/emailext-template[image:https://img.shields.io/jenkins/plugin/v/emailext-template.svg[Jenkins Plugin]]
 link:https://github.com/jenkinsci/emailext-template-plugin/releases/latest[image:https://img.shields.io/github/release/jenkinsci/emailext-template-plugin.svg?label=changelog[GitHub release]]
