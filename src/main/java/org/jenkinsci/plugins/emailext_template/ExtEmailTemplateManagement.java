@@ -78,7 +78,7 @@ public class ExtEmailTemplateManagement extends ManagementLink {
         ExtendedEmailPublisherTemplate template = descriptor.getTemplateById(templateId);
         if (template != null) {
             req.setAttribute("template", template);
-            req.getView(this, "edit.jelly").forward(req, rsp);
+            req.getView(this, "edit").forward(req, rsp);
         } else {
             req.getView(this, "index").forward(req, rsp);
         }
