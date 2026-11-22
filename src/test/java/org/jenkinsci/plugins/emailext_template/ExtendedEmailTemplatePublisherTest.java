@@ -1,5 +1,8 @@
 package org.jenkinsci.plugins.emailext_template;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import hudson.model.FreeStyleBuild;
 import hudson.model.FreeStyleProject;
 import hudson.plugins.emailext.ExtendedEmailPublisher;
@@ -8,6 +11,7 @@ import hudson.plugins.emailext.plugins.EmailTrigger;
 import hudson.plugins.emailext.plugins.recipients.ListRecipientProvider;
 import hudson.plugins.emailext.plugins.trigger.AlwaysTrigger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -71,5 +75,30 @@ class ExtendedEmailTemplatePublisherTest {
         b = j.buildAndAssertSuccess(p);
         // Template was removed, so we should get the message
         j.assertLogContains(Messages.TemplateIdRemoved(template.getId()), b);
+    }
+
+    @Test
+    @Issue("JENKINS-71094")
+    void testEmptyAndNullTemplatesConfigRoundTripAndBuild(JenkinsRule j) throws Exception {
+        ExtendedEmailTemplatePublisher publisherWithNull = new ExtendedEmailTemplatePublisher(null);
+        assertNotNull(publisherWithNull.getTemplateIds());
+        assertTrue(publisherWithNull.getTemplateIds().isEmpty());
+
+        ExtendedEmailTemplatePublisher publisherWithBlankEntries =
+                new ExtendedEmailTemplatePublisher(Arrays.asList(null, new TemplateId(null), new TemplateId("   ")));
+        assertTrue(publisherWithBlankEntries.getTemplateIds().isEmpty());
+
+        FreeStyleProject p = j.createFreeStyleProject();
+        p.getPublishersList().add(publisherWithNull);
+
+        // Verify job configure page renders and saves cleanly when no templates are configured
+        p = j.configRoundtrip(p);
+        ExtendedEmailTemplatePublisher roundtripped =
+                p.getPublishersList().get(ExtendedEmailTemplatePublisher.class);
+        assertNotNull(roundtripped);
+        assertTrue(roundtripped.getTemplateIds().isEmpty());
+
+        // Verify build succeeds without NullPointerException when templateIds is empty
+        j.buildAndAssertSuccess(p);
     }
 }
