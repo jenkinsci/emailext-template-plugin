@@ -40,11 +40,12 @@ l.layout(permission:app.ADMINISTER, norefresh: true) {
     p(_("intro"))
     def descriptor = app.getDescriptorByType(org.jenkinsci.plugins.emailext_template.ExtendedEmailTemplatePublisher.DescriptorImpl.class)
     table(class:"pane", style:"border-top: thin inset darkgray") {
-      descriptor.templates.each { t ->      
+      descriptor.templates.each { t ->
+        def encodedId = java.net.URLEncoder.encode(t.id, "UTF-8")
         tr(valign:"center", style:"border-top: thin inset darkgray") {
           td(width:"32") {
-            l.task(icon:"icon-notepad icon-sm", href:"editTemplate?id=${t.id}", title:_("Edit template")+" "+t.name)
-            l.task(icon:"icon-edit-delete icon-sm", href:"removeTemplate?id=${t.id}", post: true, requiresConfirmation: true,
+            l.task(icon:"icon-notepad icon-sm", href:"editTemplate?id=${encodedId}", title:_("Edit template")+" "+t.name)
+            l.task(icon:"icon-edit-delete icon-sm", href:"removeTemplate?id=${encodedId}", post: true, requiresConfirmation: true,
                     title:_("Remove template")+" "+t.name, confirmationMessage: "Are you sure you want to delete [${t.name}]?")
           }
           td {
