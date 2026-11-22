@@ -26,18 +26,18 @@ def l = namespace("/lib/layout")
 def f = namespace("/lib/form")
 def st = namespace("jelly:stapler")
 
-//<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
-l.layout(norefresh:"true") {
-  st.include(page:"sidepanel")
+l.layout(permission: app.ADMINISTER, norefresh: "true", title: _("Edit Email Template")) {
+  st.include(page: "sidepanel")
   l.main_panel {
     h1 {
-      l.task(icon:"icon-notepad icon-xlg", title:_("Edit Email Template"))
+      l.icon(src: "symbol-mail-open-outline plugin-ionicons-api", class: "icon-xlg")
+      text(" " + _("Edit Email Template"))
     }
-    f.form(method:"post", action:"saveTemplate") {
-      f.section(title:_("the template"), name:"template") {
+    f.form(method: "post", action: "saveTemplate", name: "config") {
+      f.section(title: _("the template"), name: "template") {
         include(template, "edit-template")
-	f.block {
-          f.submit(value:_("Submit"))
+        f.block {
+          f.submit(value: _("Submit"))
         }
       }
     }

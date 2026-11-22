@@ -26,14 +26,12 @@ THE SOFTWARE.
   Side panel for email-ext-template
 */
 def l = namespace("/lib/layout")
-def t = namespace("/lib/hudson")
 
 l.header()
 l.side_panel() {
     l.tasks {
-      l.task(icon:"icon-gear icon-md", href:"${rootURL}/manage", title:_("Manage Jenkins"))
-      l.task(icon:"icon-next icon-md", href:"${rootURL}/emailexttemplates", title:_("Editable Email Templates"))
-      l.task(icon:"symbol-edit-note icon-md", href:"addTemplate", title:_("Add New Template"))
+      l.task(icon: "icon-gear icon-md", href: "${rootURL}/manage", title: _("Manage Jenkins"))
+      l.task(icon: "symbol-mail-open-outline plugin-ionicons-api", href: "${rootURL}/emailexttemplates", title: _("Editable Email Templates"))
+      l.task(icon: "symbol-add-outline plugin-ionicons-api", href: "addTemplate", title: _("Add New Template"))
     }
-    t.executors(computers: [it])
 }
